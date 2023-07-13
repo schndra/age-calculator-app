@@ -9,7 +9,7 @@ function App() {
 
   return (
     <main className="h-screen grid grid-cols-1  content-center bg-nLightGrey">
-      <section className="w-vw mx-auto p-6 rounded-t-2xl rounded-bl-2xl rounded-br-[5rem] bg-nWhite ">
+      <section className="w-vw mx-auto p-6 rounded-t-2xl rounded-bl-2xl rounded-br-[5rem] bg-nWhite md:w-fixed">
         <form onSubmit={handleSubmit}>
           <div className=" flex gap-4 ">
             <FormInputRow
