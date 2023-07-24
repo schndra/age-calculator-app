@@ -26,7 +26,8 @@ export default {
       },
       width: {
         vw: "90vw",
-        fixed: "450px",
+        wFixed: "850px",
+        fixed: "550px",
         mFixed: "1440px",
       },
     },
