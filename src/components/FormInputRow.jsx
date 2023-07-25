@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-const FormInputRow = ({ labelText, name, value, handleChange }) => {
+const FormInputRow = ({
+  labelText,
+  name,
+  value,
+  handleChange,
+  placeHolder,
+}) => {
   return (
     <div className="flex flex-col  uppercase  ">
       <label
@@ -13,6 +19,7 @@ const FormInputRow = ({ labelText, name, value, handleChange }) => {
         type="text"
         value={value}
         onChange={handleChange}
+        placeholder={placeHolder}
         className="p-4 border border-nLightGrey rounded-md text-base w-full "
       />
     </div>

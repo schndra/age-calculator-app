@@ -33,22 +33,25 @@ function App() {
               name={"day"}
               handleChange={handleChange}
               value={value.day}
+              placeHolder={"DD"}
             />
             <FormInputRow
               labelText={"month"}
               name={"month"}
               handleChange={handleChange}
               value={value.month}
+              placeHolder={"MM"}
             />
             <FormInputRow
               labelText={"year"}
               name={"year"}
               handleChange={handleChange}
               value={value.year}
+              placeHolder={"YYYY"}
             />
           </div>
 
-          <div className="my-20 relative flex items-center justify-center md:justify-end">
+          <div className="my-16 relative flex items-center justify-center md:justify-end">
             <hr className="h-px  bg-nLightGrey border-0 w-full" />
             <button
               type="submit"
@@ -58,6 +61,26 @@ function App() {
             </button>
           </div>
         </form>
+        <div className="text-5xl italic font-bold">
+          <h1>
+            <span className="text-primaryPurple pr-2">
+              {!value.year ? "--" : value.year}
+            </span>
+            years
+          </h1>
+          <h1>
+            <span className="text-primaryPurple pr-2 ">
+              {!value.month ? "--" : value.month}
+            </span>
+            months
+          </h1>
+          <h1>
+            <span className="text-primaryPurple pr-2">
+              {!value.day ? "--" : value.day}
+            </span>
+            days
+          </h1>
+        </div>
       </section>
     </main>
   );
