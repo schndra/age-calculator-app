@@ -15,9 +15,11 @@ const errorState = {
 
 function App() {
   const [value, setValue] = useState(state);
+  const [calcAge, setCalcAge] = useState(state);
   const [isDayError, setIsDayError] = useState(errorState);
   const [isMonthError, setIsMonthError] = useState(errorState);
   const [isYearError, setIsYearError] = useState(errorState);
+  // const [isSubmit, setIsSubmit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,6 +59,12 @@ function App() {
       setIsMonthError({ isError: true });
       return;
     }
+
+    setCalcAge({
+      day: Math.abs(currDay - day),
+      month: Math.abs(currMonth - month),
+      year: currYear - year,
+    });
 
     setIsDayError({ isError: false, errorValue: "" });
     setIsYearError({ isError: false, errorValue: "" });
@@ -113,7 +121,7 @@ function App() {
             <hr className="h-px  bg-nLightGrey border-0 w-full" />
             <button
               type="submit"
-              className="w-16 h-16 bg-primaryPurple rounded-full flex items-center justify-center absolute"
+              className="w-16 h-16 bg-primaryPurple rounded-full flex items-center justify-center absolute hover:bg-nOffBlack"
             >
               <img src={IconArrow} alt="" className="w-6" />
             </button>
@@ -122,19 +130,19 @@ function App() {
         <div className="text-5xl italic font-bold">
           <h1>
             <span className="text-primaryPurple pr-2">
-              {!value.year ? "--" : value.year}
+              {!calcAge.year ? "--" : calcAge.year}
             </span>
             years
           </h1>
           <h1>
             <span className="text-primaryPurple pr-2 ">
-              {!value.month ? "--" : value.month}
+              {!calcAge.month ? "--" : calcAge.month}
             </span>
             months
           </h1>
           <h1>
             <span className="text-primaryPurple pr-2">
-              {!value.day ? "--" : value.day}
+              {!calcAge.day ? "--" : calcAge.day}
             </span>
             days
           </h1>
