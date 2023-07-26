@@ -2,8 +2,8 @@
 
 ### Screenshot
 
-![](./screenshots/mobileView.png.png)
-![](./screenshots/desktopView.png.png)
+![](./screenshots/mobileView.png)
+![](./screenshots/desktopView.png)
 
 ### Links
 
