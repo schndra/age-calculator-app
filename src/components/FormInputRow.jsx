@@ -5,12 +5,19 @@ const FormInputRow = ({
   value,
   handleChange,
   placeHolder,
+  isError,
+  errorValue,
 }) => {
+  // console.log(isError);
   return (
-    <div className="flex flex-col  uppercase  ">
+    <div className="flex flex-col    ">
       <label
         htmlFor={name}
-        className="text-nSmokeyGreye tracking-[0.125em] text-xs"
+        className={`${
+          isError
+            ? "text-primaryLightRed tracking-[0.125em] text-xs uppercase"
+            : "text-nSmokeyGreye tracking-[0.125em] text-xs uppercase"
+        }`}
       >
         {labelText}
       </label>
@@ -20,8 +27,15 @@ const FormInputRow = ({
         value={value}
         onChange={handleChange}
         placeholder={placeHolder}
-        className="p-4 border border-nLightGrey rounded-md text-base w-full "
+        className={`${
+          isError
+            ? "p-4 border border-primaryLightRed rounded-md text-base w-full uppercase"
+            : "p-4 border border-nLightGrey rounded-md text-base w-full uppercase"
+        }`}
       />
+      {isError && (
+        <p className="text-primaryLightRed text-xs italic mt-2">{errorValue}</p>
+      )}
     </div>
   );
 };
