@@ -23,23 +23,20 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { day, month, year } = value;
 
-    if (!day) {
-      setIsDayError({ isError: true, errorValue: "This field is required" });
-    }
-    if (!month) {
-      setIsMonthError({ isError: true, errorValue: "This field is required" });
-    }
-    if (!year) {
-      setIsYearError({ isError: true, errorValue: "This field is required" });
-    }
-
+    //current date
     const currDate = new Date();
-    const currDay = currDate.getDate();
-    const currMonth = currDate.getMonth();
     const currYear = currDate.getUTCFullYear();
+    const currMonth = currDate.getMonth();
+    const currDay = currDate.getDate();
+
+    if (!day && !month && !year) {
+      setIsDayError({ isError: true, errorValue: "This field is required" });
+      setIsMonthError({ isError: true, errorValue: "This field is required" });
+      setIsYearError({ isError: true, errorValue: "This field is required" });
+      return;
+    }
 
     if (day > 31) {
       setIsDayError({ isError: true, errorValue: "Must be a valid day" });
@@ -47,7 +44,7 @@ function App() {
       setIsYearError({ ...isYearError, isError: true });
       return;
     }
-    if (month > 12) {
+    if (month > 11) {
       setIsMonthError({ isError: true, errorValue: "Must be a valid month" });
       setIsDayError({ isError: true });
       setIsYearError({ isError: true });
@@ -60,18 +57,44 @@ function App() {
       return;
     }
 
+    //date of birth
+    const dob = new Date(year, month - 1, day);
+    const dobYear = dob.getFullYear();
+    const dobMonth = dob.getMonth();
+    const dobDay = dob.getDate();
+    console.log(dobYear, dobMonth, dobDay);
+
+    let ageYear = currYear - dobYear;
+    let ageMonth;
+    let ageDay;
+
+    if (currMonth >= dobMonth) {
+      ageMonth = currMonth - dobMonth;
+    } else {
+      ageYear -= 1;
+      ageMonth = currMonth + 12 - dobMonth;
+    }
+
+    if (currDay >= dobDay) {
+      ageDay = currDay - dobDay;
+    } else {
+      ageMonth -= 1;
+      ageDay = 31 + currDay - dobDay;
+      if (ageMonth < 0) {
+        ageMonth = 11;
+        ageYear -= 1;
+      }
+    }
+
     setCalcAge({
-      day: Math.abs(currDay - day),
-      month: Math.abs(currMonth - month),
-      year: currYear - year,
+      year: ageYear,
+      month: ageMonth,
+      day: ageDay,
     });
 
     setIsDayError({ isError: false, errorValue: "" });
     setIsYearError({ isError: false, errorValue: "" });
     setIsMonthError({ isError: false, errorValue: "" });
-
-    console.log(currDay, currMonth, currYear);
-    // console.log(value);
   };
 
   const handleChange = (e) => {
